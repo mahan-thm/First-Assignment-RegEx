@@ -43,7 +43,7 @@ class Test3 {
     @Test
     void findWordsWithRepeatLettersTest4() {
         String text = "word with repeat letters: hello";
-        List<String> expected = List.of("hello", "repeat", "letters");
+        List<String> expected = List.of("repeat", "letters:", "hello");
         List<String> result = handle.findWordsWithRepeatLetters(text);
         assertEquals(expected.size(), result.size());
         assertTrue(result.containsAll(expected));

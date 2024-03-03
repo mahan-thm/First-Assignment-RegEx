@@ -47,17 +47,9 @@ public class Exercise3 {
      * implement the method below so that it returns a list of words with repeated
      * letters
      */
-
-    // public static List<String> findWordsWithRepeatLetters(String input) {
-    // List<String> wordsWithRepeatLetters = new ArrayList<>();
-    // return wordsWithRepeatLetters;
-    // // TODO
-    // }
-
     public static List<String> findWordsWithRepeatLetters(String input) {
         List<String> wordsWithRepeatLetters = new ArrayList<>();
         String[] words = input.split("\\s+");
-
         for (String word : words) {
             if (hasRepeatedLetters(word)) {
                 wordsWithRepeatLetters.add(word);
@@ -66,6 +58,7 @@ public class Exercise3 {
 
         return wordsWithRepeatLetters;
     }
+
     private static boolean hasRepeatedLetters(String word) {
         Set<Character> seenLetters = new HashSet<>();
         for (char letter : word.toCharArray()) {
@@ -83,31 +76,38 @@ public class Exercise3 {
      * for example: "appleapple orange pearpear pineapple" -> ["appleapple",
      * "pearpear"]
      */
+    
+    // public static List<String> findReapetdWords(String input) {
+    //     List<String> repWords = new ArrayList<>();
 
-//    public static List<String> findReapetdWords(String input) {
-//        List<String> repeatedWords = new ArrayList<>();
-//        return repeatedWords;
-//        // TODO
-//    }
+    //     String[] words = input.split("\\s+");
 
-    public static List<String> findRepeatedWords(String input) {
-        List<String> repeatedWords = new ArrayList<>();
+    //     for (int i = 0; i < words.length - 1; i++) {
+    //         if (words[i].equals(words[i + 1])) {
+    //             repWords.add(words[i]);
+    //         }
+    //     }
 
-        String[] words = input.split("\\s+");
+    //     return repWords;
+    // }
 
-        for (int i = 0; i < words.length - 1; i++) {
-            if (words[i].equals(words[i + 1])) {
-                repeatedWords.add(words[i]);
-            }
+    public static List<String> findReapetdWords(String input) {
+        List<String> result = new ArrayList<>();
+        Pattern pattern = Pattern.compile("(\\b\\w+\\w)\\1\\b");
+        Matcher matcher = pattern.matcher(input);
+        while (matcher.find()) {
+            result.add(matcher.group());
         }
-
-        return repeatedWords;
+        return result;
     }
+
 
     public static void main(String[] args) {
         // test your code here!
 
         // System.err.println(extractURL("https://www.shahidbeheshti.ir"));
-        System.err.println(validateEmail("hello_World@geeksforgeeks.org"));
+        // System.err.println(validateEmail("hello_World@geeksforgeeks.org"));
+        // System.err.println(findWordsWithRepeatLetters("word with repeat letters: hello"));
+        System.err.println(findReapetdWords("appleapple orange pearpear pineapple"));
     }
 }
